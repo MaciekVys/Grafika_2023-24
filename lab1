@@ -1,0 +1,58 @@
+from PIL import Image
+import numpy as np
+
+#zadanie2
+print("Zad2-------------------------")
+obrazek = Image.open("inicjaly.bmp")
+print("tryb:", obrazek.mode)
+print("format:", obrazek.format)
+print("rozmiar:", obrazek.size)
+
+#zadanie3
+print("Zad3-----------------------------------------------------------")
+obraz_tablica = np.array(obrazek)
+print(obraz_tablica)
+obrazek1 = obraz_tablica * 1
+print(obrazek1)
+ob1 = open("inicjaly.txt",'w')
+for rows in obrazek1:
+    for f in rows:
+        ob1.write(str(f) + ' ')
+    ob1.write('\n')
+ob1.close()
+
+#zadanie4
+print("Zad4a----------------------------------------------------------")
+#a
+print("typ danych tablicy:", obraz_tablica.dtype)
+print("rozmiar tablicy:", obraz_tablica.shape)
+print("liczba elementow:", obraz_tablica.size)
+print("wymiar tablicy:", obraz_tablica.ndim)
+print("rozmiar wyrazu tablicy:", obraz_tablica.itemsize)
+
+#b
+print("Zad4b----------------------------------------------------------")
+print("(50,30):", obrazek.getpixel((50, 30)))
+print("90, 40:", obrazek.getpixel((90, 40)))
+print("99, 0:", obrazek.getpixel((99, 0)))
+#zadanie5
+print("Zad5-----------------------------------------------------------")
+obraz_txt = np.loadtxt("inicjaly.txt", dtype=bool)
+czy_rowne = np.array_equal(obraz_txt, obraz_tablica)
+print(obraz_txt)
+print(obraz_tablica)
+print("Czy rowne: ", czy_rowne)
+
+print("Zad6-----------------------------------------------------------")
+obraz_uint8 = np.loadtxt("inicjaly.txt", dtype=np.uint8)
+print("typ danych tablicy:", obraz_uint8.dtype)
+print("rozmiar tablicy:", obraz_uint8.shape)
+print("liczba elementow:", obraz_uint8.size)
+print("wymiar tablicy:", obraz_uint8.ndim)
+print("rozmiar wyrazu tablicy:", obraz_uint8.itemsize)
+obraz_uint8 = obraz_uint8 * 255
+ob2 = Image.fromarray(obraz_uint8)
+ob2.show()
+
+
+
